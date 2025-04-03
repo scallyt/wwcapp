@@ -4,14 +4,19 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 interface CardProps {
   type: "group" | "collection";
   name: string;
+  id?: string | undefined;
 }
 
-export default function CardComponent({ type, name }: CardProps) {
+export default function CardComponent({ type, name, id }: CardProps) {
   const router = useRouter();
 
   return (
     <TouchableOpacity
-      onPress={() => router.push(`/${type}/new`)}
+      onPress={() => {
+        type === "group"
+          ? router.push(`/${type}/new`)
+          : router.push(`/${type}/new/${id}`);
+      }}
       style={styles.baseCard}
     >
       <View style={styles.content}>

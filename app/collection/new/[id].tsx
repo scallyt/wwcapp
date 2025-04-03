@@ -8,11 +8,12 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import { groupTable } from "../../db/schema";
-import { router } from "expo-router";
+import { collectionTable, groupTable } from "../../../db/schema";
+import { router, useLocalSearchParams } from "expo-router";
 
-export default function NewGrup() {
+export default function NewCollection() {
   const [name, setName] = useState("");
+  const { id } = useLocalSearchParams();
 
   const db = useSQLiteContext();
   const drizzleDb = drizzle(db, { schema: { groupTable } });
@@ -23,12 +24,15 @@ export default function NewGrup() {
       return;
     }
 
+    console.log("id: ", id);
+
     console.log("Creating group with name:", name);
 
     const result = await drizzleDb
-      .insert(groupTable)
+      .insert(collectionTable)
       .values({
         name: name,
+        groupId: Number(id),
       })
       .returning();
     console.log(result);
@@ -41,16 +45,16 @@ export default function NewGrup() {
     <>
       <View style={styles.container}>
         <View style={styles.formGroup}>
-          <Text style={styles.label}>Group Name</Text>
+          <Text style={styles.label}>Collection Name</Text>
           <TextInput
             style={styles.input}
             value={name}
             onChangeText={setName}
-            placeholder="Enter group name"
+            placeholder="Enter Collection name"
           />
         </View>
         <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-          <Text style={styles.buttonText}>Create Group</Text>
+          <Text style={styles.buttonText}>Create Collection</Text>
         </TouchableOpacity>
       </View>
     </>

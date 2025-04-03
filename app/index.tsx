@@ -1,21 +1,24 @@
 import { drizzle } from "drizzle-orm/expo-sqlite";
 import { useSQLiteContext } from "expo-sqlite";
 import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { groupTable } from "../db/schema";
 import CardComponent from "../components/CardComponent";
 import NewCardComponent from "../components/NewCardComponent";
 
-export default function index() {
+export default function Index() {
   const db = useSQLiteContext();
   const drizzleDb = drizzle(db, { schema: { groupTable } });
-
   const [all, setAll] = useState<{ id: number; name: string }[]>([]);
 
   useEffect(() => {
-    const groups = drizzleDb.select().from(groupTable).all();
-    setAll(groups);
-    console.log(groups);
+    const fetchGroups = async () => {
+      const groups = await drizzleDb.select().from(groupTable).all();
+      setAll(groups);
+      console.log(groups);
+    };
+
+    fetchGroups();
   }, []);
 
   return (
@@ -23,7 +26,7 @@ export default function index() {
       <NewCardComponent type="group" name="New Group" />
       <View
         style={{
-          borderBottomWidth: 2, // You can adjust thickness here
+          borderBottomWidth: 2,
           borderColor: "black",
           marginVertical: 10,
           width: "100%",
@@ -31,7 +34,7 @@ export default function index() {
       />
       {all.map((group) => (
         <View key={group.id}>
-          <CardComponent link={group.id} name={group.name} />
+          <CardComponent link={`${group.id}`} name={group.name} />
         </View>
       ))}
     </View>

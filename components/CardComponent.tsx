@@ -3,7 +3,7 @@ import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { useRouter } from "expo-router";
 
 interface CardProps {
-  link: number;
+  link: string;
   name: string;
 }
 
