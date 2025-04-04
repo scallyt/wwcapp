@@ -9,6 +9,7 @@ specifiers:
   expo: ~52.0.42
   expo-constants: ~17.0.8
   expo-crypto: ^14.0.2
+  expo-image-picker: ~16.0.6
   expo-linking: ~7.0.5
   expo-router: ~4.0.19
   expo-sqlite: ~15.1.4
@@ -25,6 +26,7 @@ dependencies:
   expo: 52.0.42_mue7afghs3mo3n3fy4woxlnx4q
   expo-constants: 17.0.8_nwy7crg46qarldi2fjhypthggm
   expo-crypto: 14.0.2_expo@52.0.42
+  expo-image-picker: 16.0.6_expo@52.0.42
   expo-linking: 7.0.5_brfeuexberpyv27on6gska6vr4
   expo-router: 4.0.20_kil5smi7bc6ccxxlo6uvyz747y
   expo-sqlite: 15.1.4_brfeuexberpyv27on6gska6vr4
@@ -3814,6 +3816,23 @@ packages:
       expo: 52.0.42_mue7afghs3mo3n3fy4woxlnx4q
       fontfaceobserver: 2.3.0
       react: 18.3.1
+    dev: false
+
+  /expo-image-loader/5.0.0_expo@52.0.42:
+    resolution: {integrity: sha512-Eg+5FHtyzv3Jjw9dHwu2pWy4xjf8fu3V0Asyy42kO+t/FbvW/vjUixpTjPtgKQLQh+2/9Nk4JjFDV6FwCnF2ZA==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 52.0.42_mue7afghs3mo3n3fy4woxlnx4q
+    dev: false
+
+  /expo-image-picker/16.0.6_expo@52.0.42:
+    resolution: {integrity: sha512-HN4xZirFjsFDIsWFb12AZh19fRzuvZjj2ll17cGr19VNRP06S/VPQU3Tdccn5vwUzQhOBlLu704CnNm278boiQ==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 52.0.42_mue7afghs3mo3n3fy4woxlnx4q
+      expo-image-loader: 5.0.0_expo@52.0.42
     dev: false
 
   /expo-keep-awake/14.0.3_expo@52.0.42+react@18.3.1:

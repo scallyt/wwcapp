@@ -54,8 +54,9 @@ export default function GroupId() {
       {all.map((collection) => (
         <View key={collection.id}>
           <CardComponent
-            link={`collection/${collection.id}`}
+            link={`/${collection.id}`}
             name={collection.name}
+            type={"collection"}
           />
         </View>
       ))}

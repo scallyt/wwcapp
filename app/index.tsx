@@ -34,7 +34,11 @@ export default function Index() {
       />
       {all.map((group) => (
         <View key={group.id}>
-          <CardComponent link={`${group.id}`} name={group.name} />
+          <CardComponent
+            link={`${group.id}`}
+            name={group.name}
+            type={"group"}
+          />
         </View>
       ))}
     </View>

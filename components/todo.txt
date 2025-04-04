@@ -1,0 +1,1 @@
+Törölni minden group-ot / collection amikor egyet töröl vagyis a hozzájuk tartozó dolgokat is
