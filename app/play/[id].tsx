@@ -73,10 +73,23 @@ export default function IndexPlay() {
   }
 
   function DontKnowHandleNextQuestion() {
-    shuffleArray(questionPool);
+    if (questionPool.length <= 0) {
+      alert("Well done! You have answered all the questions.T ");
+      router.back();
+      return;
+    }
 
-    const nextQuestion =
-      questionPool[questionPool.indexOf(currentQuestion!) + 1];
+    const shuffledPool = shuffleArray([...questionPool]);
+    const currentIndex = shuffledPool.findIndex((q) => q === currentQuestion);
+    let nextQuestion;
+
+    if (currentIndex === 0 && shuffledPool.length > 1) {
+      nextQuestion = shuffledPool[1];
+    } else {
+      nextQuestion = shuffledPool[0];
+    }
+
+    setQuestionPool(shuffledPool);
     setCurrentQuestion(nextQuestion);
     setShowAnswer(false);
   }

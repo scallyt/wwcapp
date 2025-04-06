@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/expo-sqlite";
 import { useSQLiteContext } from "expo-sqlite";
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { groupTable } from "../db/schema";
 import CardComponent from "../components/CardComponent";
 import NewCardComponent from "../components/NewCardComponent";
@@ -22,7 +22,7 @@ export default function Index() {
   }, []);
 
   return (
-    <View>
+    <ScrollView style={{ flex: 1 }}>
       <NewCardComponent type="group" name="New Group" />
       <View
         style={{
@@ -41,6 +41,6 @@ export default function Index() {
           />
         </View>
       ))}
-    </View>
+    </ScrollView>
   );
 }

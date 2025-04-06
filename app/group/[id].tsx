@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/expo-sqlite";
 import { eq } from "drizzle-orm";
 import { useSQLiteContext } from "expo-sqlite";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { groupTable, collectionTable } from "../../db/schema";
 import NewCardComponent from "../../components/NewCardComponent";
 import { useLocalSearchParams } from "expo-router";
@@ -40,26 +40,28 @@ export default function GroupId() {
   }, [id]);
 
   return (
-    <View>
-      <NewCardComponent type="collection" name="New Collection" id={id} />
-      <View
-        style={{
-          borderBottomWidth: 2,
-          borderColor: "black",
-          marginVertical: 10,
-          width: "100%",
-        }}
-      />
+    <ScrollView style={{ flex: 1 }}>
+      <View>
+        <NewCardComponent type="collection" name="New Collection" id={id} />
+        <View
+          style={{
+            borderBottomWidth: 2,
+            borderColor: "black",
+            marginVertical: 10,
+            width: "100%",
+          }}
+        />
 
-      {all.map((collection) => (
-        <View key={collection.id}>
-          <CardComponent
-            link={`/${collection.id}`}
-            name={collection.name}
-            type={"collection"}
-          />
-        </View>
-      ))}
-    </View>
+        {all.map((collection) => (
+          <View key={collection.id}>
+            <CardComponent
+              link={`/${collection.id}`}
+              name={collection.name}
+              type={"collection"}
+            />
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 }

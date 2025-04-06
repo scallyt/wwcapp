@@ -7,10 +7,10 @@ import {
   Image,
   Alert,
 } from "react-native";
-import { useRouter } from "expo-router";
+import { router, useRouter } from "expo-router";
 import { useSQLiteContext } from "expo-sqlite";
 import { drizzle } from "drizzle-orm/expo-sqlite";
-import { groupTable } from "../db/schema";
+import { collectionTable, groupTable } from "../db/schema";
 import { eq } from "drizzle-orm";
 
 interface CardProps {
@@ -20,10 +20,8 @@ interface CardProps {
 }
 
 export default function CardComponent({ link, name, type }: CardProps) {
-  const router = useRouter();
-
   const db = useSQLiteContext();
-  const drizzleDb = drizzle(db, { schema: { groupTable } });
+  const drizzleDb = drizzle(db, { schema: { groupTable, collectionTable } });
 
   const deleteFn = async () => {
     Alert.alert("Delete", "Are you sure you want to delete this?", [
@@ -33,12 +31,25 @@ export default function CardComponent({ link, name, type }: CardProps) {
       },
       {
         text: "OK",
-        onPress: () => {
-          drizzleDb
-            .delete(groupTable)
-            .where(eq(groupTable.id, parseInt(link)))
-            .run();
-          router.push("/");
+        onPress: async () => {
+          const id = parseInt(link.replace(/^\/+/, ""));
+
+          if (type === "collection") {
+            console.log("Deleting collection with ID:", id);
+            const resoult = await drizzleDb
+              .delete(collectionTable)
+              .where(eq(collectionTable.id, id))
+              .run();
+            console.log("Collection deleted with ID:", id);
+            console.log(resoult);
+            router.push("/");
+          } else if (type === "group") {
+            await drizzleDb
+              .delete(groupTable)
+              .where(eq(groupTable.id, id))
+              .run();
+            router.push("/");
+          }
         },
       },
     ]);

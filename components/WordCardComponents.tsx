@@ -1,16 +1,20 @@
 import React from "react";
-import { View, Image, Text, StyleSheet } from "react-native";
+import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 interface WordCardProps {
   image?: string;
   question: string;
   answer: string;
+  onEdit?: () => void;
+  onDelete?: () => void;
 }
 
 export default function WordCardComponents({
   image,
   question,
   answer,
+  onEdit,
+  onDelete,
 }: WordCardProps) {
   return (
     <View style={styles.container}>
@@ -27,6 +31,17 @@ export default function WordCardComponents({
         <View style={styles.contentContainer}>
           <Text style={styles.questionText}>{question}</Text>
           <Text style={styles.answerText}>{answer}</Text>
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity onPress={onEdit} style={styles.iconButton}>
+            <Image source={require("../assets/edit.png")} style={styles.icon} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={onDelete} style={styles.iconButton}>
+            <Image
+              source={require("../assets/rubbish-bin.png")}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -72,5 +87,19 @@ const styles = StyleSheet.create({
   answerText: {
     fontSize: 16,
     color: "#666666",
+  },
+  buttonContainer: {
+    position: "absolute",
+    right: 8,
+    top: 8,
+    flexDirection: "column",
+  },
+  iconButton: {
+    padding: 4,
+    marginLeft: 8,
+  },
+  icon: {
+    width: 24,
+    height: 24,
   },
 });
