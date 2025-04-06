@@ -1,9 +1,10 @@
 import { drizzle } from "drizzle-orm/expo-sqlite";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
-import { Slot } from "expo-router";
+import { Link, Slot } from "expo-router";
 import { openDatabaseSync, SQLiteProvider } from "expo-sqlite";
 import { Suspense } from "react";
 import migrations from "../drizzle/migrations";
+import { Text } from "react-native";
 
 export default function RootLayout({}) {
   const expoDb = openDatabaseSync("db");

@@ -4,7 +4,7 @@ import { useSQLiteContext } from "expo-sqlite";
 import React, { useEffect, useState } from "react";
 import { questionTable } from "../../db/schema";
 import { eq } from "drizzle-orm";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import WordCardComponents from "../../components/WordCardComponents";
 
 export default function GetCollection() {
@@ -41,13 +41,21 @@ export default function GetCollection() {
 
   return (
     <View>
-      <Text>{id}</Text>
       <TouchableOpacity
         onPress={() => {
           router.push(`/word/new/${id}`);
         }}
+        style={styles.baseCard}
       >
-        <Text style={{ color: "blue" }}>Create new word</Text>
+        <Text>Add new question</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          router.push(`/play/${id}`);
+        }}
+        style={styles.playBtn}
+      >
+        <Text>Learn</Text>
       </TouchableOpacity>
       <View
         style={{
@@ -69,3 +77,32 @@ export default function GetCollection() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  baseCard: {
+    backgroundColor: "#ffffff",
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    margin: 10,
+    padding: 15,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  playBtn: {
+    backgroundColor: "#4CAF50",
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    margin: 10,
+    padding: 15,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

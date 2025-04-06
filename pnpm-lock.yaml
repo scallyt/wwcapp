@@ -19,6 +19,7 @@ specifiers:
   react-native-safe-area-context: 4.12.0
   react-native-screens: ~4.4.0
   typescript: ^5.3.3
+  zustand: ^5.0.3
 
 dependencies:
   babel-plugin-inline-import: 3.0.0
@@ -35,6 +36,7 @@ dependencies:
   react-native: 0.76.8_trt3x63hq6wx6ooz7fwu2obg3m
   react-native-safe-area-context: 4.12.0_4lzsjd3jwkkyipb4py5pkrlhiy
   react-native-screens: 4.4.0_4lzsjd3jwkkyipb4py5pkrlhiy
+  zustand: 5.0.3_po4keleilqsm4vrhgxl2cr46aq
 
 devDependencies:
   '@babel/core': 7.26.10
@@ -7120,4 +7122,26 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: false
+
+  /zustand/5.0.3_po4keleilqsm4vrhgxl2cr46aq:
+    resolution: {integrity: sha512-14fwWQtU3pH4dE0dOpdMiWjddcH+QzKIgk1cl8epwSE7yag43k/AD/m4L6+K7DytAOr9gGBe3/EXj9g7cdostg==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      immer: '>=9.0.6'
+      react: '>=18.0.0'
+      use-sync-external-store: '>=1.2.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+      use-sync-external-store:
+        optional: true
+    dependencies:
+      '@types/react': 18.3.20
+      react: 18.3.1
     dev: false
